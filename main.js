@@ -33,8 +33,9 @@ let cube = new Object3D([
 window.requestAnimationFrame(step);
 function step() {
     let rotation = 10e-3;
+    rotation /= 2;
     cube.rotateZ(rotation);
-    cube.rotateX(rotation);
+    cube.rotateX(rotation * 2);
     renderLines(context, cube);
     window.requestAnimationFrame(step);
 }
@@ -56,7 +57,6 @@ function drawLine(context, line, color = "red") {
 }
 function projection(point) {
     let { x, y, z } = point;
-    // z += 20;//move from camera
     let edgeX = width / 2 + 100 * (FOV * x) / (FOV + z);
     let edgeY = height / 2 + 100 * (FOV * y) / (FOV + z);
     return new Point2D(edgeX, edgeY);
