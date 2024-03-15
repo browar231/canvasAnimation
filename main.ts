@@ -61,7 +61,10 @@ function drawLine(context: CanvasRenderingContext2D, line: Edge<Point2D>, color:
 }
 function projection3Dto2D(point: Point3D): Point2D {
     let { x, y, z } = point;
-    let edgeX = width / 2 + 100 * (FOV * x) / (FOV + z);
-    let edgeY = height / 2 + 100 * (FOV * y) / (FOV + z);
+    z += 3;
+    let angleDeg = 60;
+    let angleRad = angleDeg * Math.PI / 180;
+    let edgeX = 100 * x / (z * Math.tan(angleRad / 2)) + width / 2;
+    let edgeY = 100 * y / (z * Math.tan(angleRad / 2)) + height / 2;
     return new Point2D(edgeX, edgeY);
 }
