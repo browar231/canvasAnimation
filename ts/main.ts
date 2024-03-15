@@ -62,9 +62,11 @@ function drawLine(context: CanvasRenderingContext2D, line: Edge<Point2D>, color:
 function projection3Dto2D(point: Point3D): Point2D {
     let { x, y, z } = point;
     z += 3;
-    let angleDeg = 60;
-    let angleRad = angleDeg * Math.PI / 180;
-    let edgeX = 100 * x / (z * Math.tan(angleRad / 2)) + width / 2;
-    let edgeY = 100 * y / (z * Math.tan(angleRad / 2)) + height / 2;
+    let angle = degToRad(60);
+    let edgeX = 100 * x / (z * Math.tan(angle / 2)) + width / 2;
+    let edgeY = 100 * y / (z * Math.tan(angle / 2)) + height / 2;
     return new Point2D(edgeX, edgeY);
+}
+function degToRad(deg: number): number {
+    return deg * Math.PI / 180;
 }
