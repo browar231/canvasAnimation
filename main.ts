@@ -47,8 +47,8 @@ function renderLines(context: CanvasRenderingContext2D, object: Object3D) {
     context.fillStyle = "black";
     context.fillRect(0, 0, width, height);
     object.returnEdgesAsCoordinates().forEach(edge => {
-        let projectedStartPoint = projection(edge.start);
-        let projectedEndPoint = projection(edge.end);
+        let projectedStartPoint = projection3Dto2D(edge.start);
+        let projectedEndPoint = projection3Dto2D(edge.end);
         drawLine(context, new Edge<Point2D>(projectedStartPoint, projectedEndPoint), "blue");
     })
 }
@@ -59,7 +59,7 @@ function drawLine(context: CanvasRenderingContext2D, line: Edge<Point2D>, color:
     context.lineTo(line.end.x, line.end.y);
     context.stroke();
 }
-function projection(point: Point3D): Point2D {
+function projection3Dto2D(point: Point3D): Point2D {
     let { x, y, z } = point;
     let edgeX = width / 2 + 100 * (FOV * x) / (FOV + z);
     let edgeY = height / 2 + 100 * (FOV * y) / (FOV + z);
