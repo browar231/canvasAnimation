@@ -35,8 +35,7 @@ let cube = new Object3D(
 ]);
 window.requestAnimationFrame(step);
 function step() {
-    let rotation = 10e-3;
-    rotation /= 2;
+    let rotation = degToRad(0.5);
     cube.rotateZ(rotation);
     cube.rotateX(rotation * 2);
     renderLines(context, cube);
